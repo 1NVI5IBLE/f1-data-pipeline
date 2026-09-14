@@ -25,3 +25,33 @@ with open(output_path, "w", encoding="utf-8") as file:
     json.dump(data, file, indent=4)
 
 print (f"Data saved to {output_path}")
+
+print(data["MRData"]["RaceTable"].keys())
+
+
+
+races = data["MRData"]["RaceTable"]["Races"]
+
+print(type(races))
+print(len(races))
+
+first_race = races[0]
+print(first_race.keys())
+
+
+
+
+results = first_race["Results"]
+
+print(type(results))
+print(len(results))
+
+first_result = results[0]
+print(first_result.keys())
+
+
+
+print(first_result["Driver"])
+print(first_result["Constructor"])
+
+
