@@ -43,10 +43,35 @@ while True:
 
 
 
+#Merge races that were split across API pages
+merged_races = {}
+
+for race in all_races:
+    round_number = race["round"]
+
+    if round_number not in merged_races:
+        merged_races[round_number] = race
+    else:
+        merged_races[round_number]["Results"].extend(race["Results"])
+
+
+#Convert dictionary back to a list
+final_races = list(merged_races.values())
+
+#Check everything wsas collected 
+print(f"Total races fetched: {len(final_races)}")
+
+total_results = sum(len(race["Results"]) for race in final_races)
+
+print(f"Total driver results fetched: {total_results}")
+
+
+
+
 output_path = Path("data") / "race_results_2025.json"
 
 with open(output_path, "w", encoding="utf-8") as file:
-    json.dump(data, file, indent=4)
+    json.dump(final_races, file, indent=4)
 
 print (f"Data saved to {output_path}")
 
