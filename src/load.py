@@ -58,7 +58,10 @@ INSERT INTO race_results (
     status
 )
 VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+ON CONFLICT (season, round, driver_id)
+DO NOTHING
 """
+
 
 cursor.executemany(insert_query, rows)
 
