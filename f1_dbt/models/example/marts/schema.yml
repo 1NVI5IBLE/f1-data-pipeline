@@ -1,0 +1,48 @@
+version: 2
+
+models:
+  - name: dim_driver
+    columns:
+      - name: driver_id
+        data_tests:
+          - unique
+          - not_null
+
+
+  - name: dim_constructor
+    columns:
+      - name: constructor_id
+        data_tests:
+          - unique
+          - not_null
+
+  
+  - name: dim_race
+    columns:
+      - name: round
+        data_tests:
+          - unique
+          - not_null
+
+
+  - name: fact_race_results
+    columns:
+      - name: race_result_id
+        data_tests:
+          - unique
+          - not_null
+      
+
+      - name: driver_id
+        data_tests:
+          - not_null
+
+
+      - name: constructor_id
+        data_tests:
+          - not_null
+
+      
+      - name: round
+        data_tests:
+          - not_null
